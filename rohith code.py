@@ -1,0 +1,36 @@
+Python 3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>>   },
+... };
+... 
+... function calculateWeeklySubscriptionExpenses(budget) {
+...   const possibleCombinations = [];
+...   for (const newspaper1 of Object.keys(newspaperDailyPrices)) {
+...     for (const newspaper2 of Object.keys(newspaperDailyPrices)) {
+...       const Total =
+...         Object.values(newspaperDailyPrices[newspaper1]).reduce(
+...           (sum, price) => sum + price,
+...           0
+...         ) +
+...         Object.values(newspaperDailyPrices[newspaper2]).reduce(
+...           (sum, price) => sum + price,
+...           0
+...         );
+...       if (Total <= budget && newspaper1 !== newspaper2) {
+...         possibleCombinations.push([newspaper1, newspaper2]);
+...       }
+...     }
+...   }
+... 
+...   return possibleCombinations;
+... }
+... console.log("Enter weekly budget/amount:");
+... var readline = require("readline");
+... 
+... var rl = readline.createInterface({
+...   input: process.stdin,
+...   output: process.stdout,
+...   terminal: false,
+... });
+... rl.on("line", function (line) {
+...   console.log(calculateWeeklySubscriptionExpenses(line));
